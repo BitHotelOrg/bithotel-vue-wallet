@@ -1,0 +1,37 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --color-white: #fff;
+  --bh-green-gradient:linear-gradient(
+    87.46deg,
+    #3cc4d7 -3.04%,
+    #6df3d3 92.88%,
+    #61fea0 172.86%
+  );
+  --color-dark: linear-gradient(132.91deg, #2e2e3c 32.03%, #23232f 140.7%);
+  --primary-border: 1px solid rgba(113, 113, 133, 0.3);
+  --dividers: #454558;
+  --color-dark-solid: #23232f;
+}
+
+/* semantic color variables for this project */
+/* TODO for now light and dark mode are the same */
+:root {
+  --color-text: var(--color-white);
+  --color-cta-primary: var(--bh-green-gradient);
+  --color-background: var(--color-dark);
+  --style-border: var(--primary-border);
+  --vertical-lines: var(--dividers);
+  --color-exit-background: var(--color-dark-solid);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: var(--color-white);
+    --color-cta-primary: var(--bh-green-gradient);
+    --color-background: var(--color-dark);
+    --style-border: var(--primary-border);
+    --vertical-lines: var(--dividers);
+    --color-exit-background: var(--color-dark-solid);
+  }
+}
+

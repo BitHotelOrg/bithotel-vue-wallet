@@ -1,0 +1,23 @@
+{
+  "name": "bithotel-wallet",
+  "version": "1.0.0",
+  "description": "Configurable multichain web3 wallet. Powered by walletconnect, web3modal  and ethers",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/BitHotelOrg/bithotel-wallet.git"
+  },
+  "keywords": [
+    "wallet",
+    "web3"
+  ],
+  "author": "thomas@bithotel.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BitHotelOrg/bithotel-wallet/issues"
+  },
+  "homepage": "https://github.com/BitHotelOrg/bithotel-wallet#readme"
+}
