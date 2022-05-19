@@ -8,7 +8,7 @@ import type { JsonRpcProvider } from "@ethersproject/providers";
 import { getBalance } from "./chain";
 import wp from "./index";
 
-const defaultChainId = 56;
+const defaultChainId = 97;
 
 export const chainId = ref(defaultChainId);
 const rpc = "https://data-seed-prebsc-2-s3.binance.org:8545/"; //wp.install().RPC_URL;
