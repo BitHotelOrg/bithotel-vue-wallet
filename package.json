@@ -1,11 +1,11 @@
 {
   "name": "@bithotel/bithotel-vue-wallet",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Configurable multichain web3 wallet. Powered by walletconnect, web3modal  and ethers",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "typechain --target=ethers-v5 --out-dir=types/ethers \"**/*.abi.json\""
+    "postinstall": "typechain --target=ethers-v5 --out-dir=./types/ethers \"**/*.abi.json\""
   },
   "repository": {
     "type": "git",
