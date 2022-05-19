@@ -1,23 +1,63 @@
 {
-  "name": "bithotel-wallet",
+  "name": "@bithotel/bithotel-vue-wallet",
   "version": "1.0.0",
   "description": "Configurable multichain web3 wallet. Powered by walletconnect, web3modal  and ethers",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "typechain --target=ethers-v5 --out-dir=types/ethers \"**/*.abi.json\""
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/BitHotelOrg/bithotel-wallet.git"
+    "url": "git+ssh://git@github.com/BitHotelOrg/bithotel-vue-wallet.git"
   },
   "keywords": [
     "wallet",
     "web3"
   ],
   "author": "thomas@bithotel.io",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BitHotelOrg/bithotel-wallet/issues"
+    "url": "https://github.com/BitHotelOrg/bithotel-vue-wallet/issues"
   },
-  "homepage": "https://github.com/BitHotelOrg/bithotel-wallet#readme"
+  "homepage": "https://github.com/BitHotelOrg/bithotel-vue-wallet#readme",
+  "dependencies": {
+    "@kyvg/vue3-notification": "^2.3.4",
+    "ethers": "^5.6.6",
+    "mitt": "^3.0.0",
+    "pinia": "^2.0.13",
+    "pinia-plugin-persist": "^1.0.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "sass": "^1.51.0",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14",
+    "web3modal": "^1.9.7"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@ethersproject/providers": "^5.6.6",
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@typechain/ethers-v5": "^10.0.0",
+    "@types/jsdom": "^16.2.14",
+    "@types/node": "^16.11.27",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vitejs/plugin-vue-jsx": "^1.3.10",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "@vue/test-utils": "^2.0.0-rc.20",
+    "@vue/tsconfig": "^0.1.3",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "cypress": "^9.5.4",
+    "eslint": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-vue": "^8.2.0",
+    "jsdom": "^19.0.0",
+    "prettier": "^2.5.1",
+    "start-server-and-test": "^1.14.0",
+    "typechain": "^8.0.0",
+    "typescript": "~4.6.3",
+    "vite": "^2.9.5",
+    "vitest": "^0.9.3",
+    "vue-tsc": "^0.34.7"
+  }
 }

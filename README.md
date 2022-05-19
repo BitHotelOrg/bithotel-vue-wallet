@@ -1,13 +1,22 @@
-``` yarn add @kyvg/vue3-notification ethers web3modal mitt sass rollup-plugin-node-polyfills pinia-plugin-persist```
-``` yarn add -D @ethersproject/providers @walletconnect/web3-provider typechain @typechain/ethers-v5 @esbuild-plugins/node-globals-polyfill```
+# Bithotel Vue Web3 Wallet
 
+Using npm or yarn:
+```shell
+$ npm i @bithotel/bithotel-vue-wallet
+$ yarn add @bithotel/bithotel-vue-wallet
+```
 
-add to .gitignore
+Usage: 
+```js
+app.use(Wallet, {
+  theme: "light", // light | dark
+  chains: supportedChains, 
+  INFURA_KEY: "<yourownkey>",
+  RPC_URL: "https://bsc-dataseed.binance.org/",
+  CHAINID: "56",
+  network_type: "testnet", // testnet | mainnet
+});
+```
 
-.env
-.env.dev
-src/wallet/types/ethers
+## Support
 
-add to package.json
-
-"postinstall": "typechain --target=ethers-v5 --out-dir=src/wallet/types/ethers \"**/*.abi.json\"",

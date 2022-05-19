@@ -2,9 +2,10 @@
 import { chainId, onConnect } from "../wallet";
 import { supportedChains } from "../constants";
 import type { Chain } from "../types";
+import { inject } from "vue";
 
-const network_environment =
-  import.meta.env.VITE_ENV == "dev" ? "testnet" : "mainnet";
+const network_environment = inject("walletOptions").network_type;
+
 const chains = Object.values(supportedChains).filter(
   (chain: Chain) => chain.network == network_environment
 );

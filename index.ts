@@ -11,9 +11,9 @@ const walletPlugin = {
   getTokenContract,
   getBalance,
   initializing,
-  signer: signer,
-  provider: provider,
-  install(app: App, options: WalletOptions) {
+  signer,
+  provider,
+  install(app: App, options: WalletOptions): WalletOptions {
     const version = Number(app.version.split(".")[0]);
     if (version < 3) {
       console.warn("This plugin requires Vue 3");
@@ -24,6 +24,8 @@ const walletPlugin = {
 
     app.provide("walletOptions", options);
     app.provide("WalletStore", useConnectedStore);
+
+    return options;
   },
 };
 export default walletPlugin;

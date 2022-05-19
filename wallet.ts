@@ -6,18 +6,12 @@ import { providerOptions } from "./chain/walletConnectConfig";
 import { useConnectedStore } from "./store";
 import type { JsonRpcProvider } from "@ethersproject/providers";
 import { getBalance } from "./chain";
+import wp from "./index";
 
-let defaultChainId = 56;
-if (typeof +import.meta.env.VITE_CHAINID == "number") {
-  defaultChainId = +import.meta.env.VITE_CHAINID;
-}
+const defaultChainId = 56;
 
 export const chainId = ref(defaultChainId);
-let rpc = "";
-
-if (typeof import.meta.env.VITE_RPC_URL == "string") {
-  rpc = import.meta.env.VITE_RPC_URL;
-}
+const rpc = "https://data-seed-prebsc-2-s3.binance.org:8545/"; //wp.install().RPC_URL;
 
 export let provider = reactive(ethers.getDefaultProvider(rpc));
 export let signer = reactive<ethers.Signer>(null as any);

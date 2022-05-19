@@ -118,19 +118,18 @@ onMounted(async () => {
   text-align: center;
   position: absolute;
   width: 198px;
-  height: 50px;
+  height: 40px;
   right: 50px;
   top: 22px;
   cursor: pointer;
 
   background: var(--color-cta-primary);
-  border-radius: 10px;
+  border-radius: 5px;
   z-index: 5;
   text-align: center;
   border: 0;
   color: var(--color-text);
   font-size: 16px;
-  text-transform: uppercase;
   font-weight: 400;
   cursor: poiner;
   z-index: 555;
