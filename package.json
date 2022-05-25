@@ -1,12 +1,18 @@
 {
   "name": "@bithotel/bithotel-vue-wallet",
-  "version": "1.0.3",
+  "version": "0.0.2",
   "description": "Configurable multichain web3 wallet. Powered by walletconnect, web3modal  and ethers",
-  "main": "index.ts",
+  "main": "./dist/bithotel-vue-wallet.es.js",
+  "module": "./dist/bithotel-vue-wallet.umd.js",
+  "exports": {
+    ".": {
+      "imports": "./dist/bithotel-vue-wallet.es.js",
+      "require": "./dist/bithotel-vue-wallet.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "scripts": {
-    "install": "yarn",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "typechain --target=ethers-v5 --out-dir=./types/ethers \"**/*.abi.json\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -31,7 +37,6 @@
     "rollup-plugin-node-polyfills": "^0.2.1",
     "sass": "^1.51.0",
     "vue": "^3.2.33",
-    "vue-router": "^4.0.14",
     "web3modal": "^1.9.7"
   },
   "devDependencies": {
