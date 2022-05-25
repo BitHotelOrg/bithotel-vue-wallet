@@ -6,15 +6,21 @@ import { providerOptions } from "./chain/walletConnectConfig";
 import { useConnectedStore } from "./store";
 import type { JsonRpcProvider } from "@ethersproject/providers";
 import { getBalance } from "./chain";
-import wp from "./index";
 
-const defaultChainId = 97;
+const defaultChainId = 97; // FIXME:
 
 export const chainId = ref(defaultChainId);
-const rpc = "https://data-seed-prebsc-2-s3.binance.org:8545/"; //wp.install().RPC_URL;
+const rpc = "https://data-seed-prebsc-2-s3.binance.org:8545/"; // FIXME: global
 
 export let provider = reactive(ethers.getDefaultProvider(rpc));
 export let signer = reactive<ethers.Signer>(null as any);
+
+export function useProvider() {
+  return provider;
+}
+export function useSigner() {
+  return signer;
+}
 export const initializing = ref<Promise<boolean>>();
 
 const web3Modal = new Web3Modal({
@@ -50,20 +56,20 @@ export async function subscribeProvider(provider: JsonRpcProvider) {
 }
 
 export async function onConnect() {
+  const store = useConnectedStore();
   // eslint-disable-next-line no-async-promise-executor
   initializing.value = new Promise(async (resolve) => {
     const modalProvider = await web3Modal.connect();
     const _provider = new ethers.providers.Web3Provider(modalProvider);
     const _signer = _provider.getSigner();
     const _network = await _provider.getNetwork();
-
     provider = reactive(_provider);
     signer = reactive(_signer);
-    const store = useConnectedStore();
     chainId.value = _network.chainId;
     store.setAddress(await _signer.getAddress());
     store.setConnected(true);
     await subscribeProvider(_provider);
     resolve(true);
   });
+  store.setBalance(await getBalance());
 }

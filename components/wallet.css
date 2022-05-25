@@ -11,6 +11,7 @@
   --primary-border: 1px solid rgba(113, 113, 133, 0.3);
   --dividers: #454558;
   --color-dark-solid: #23232f;
+  --border-radius-global: 10px;
 }
 
 /* semantic color variables for this project */
@@ -22,6 +23,7 @@
   --style-border: var(--primary-border);
   --vertical-lines: var(--dividers);
   --color-exit-background: var(--color-dark-solid);
+  --border-radius: var(--border-radius-global);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,6 +34,7 @@
     --style-border: var(--primary-border);
     --vertical-lines: var(--dividers);
     --color-exit-background: var(--color-dark-solid);
+    --border-radius: var(--border-radius-global);
   }
 }
 

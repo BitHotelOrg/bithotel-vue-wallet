@@ -5,7 +5,6 @@ import type { Chain } from "../types";
 import { inject } from "vue";
 
 const network_environment = inject("walletOptions").network_type;
-
 const chains = Object.values(supportedChains).filter(
   (chain: Chain) => chain.network == network_environment
 );

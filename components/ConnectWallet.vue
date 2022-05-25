@@ -3,7 +3,6 @@ import WalletAddress from "./WalletAddress.vue";
 import WalletBalance from "./WalletBalance.vue";
 import ChainIcon from "./ChainIcon.vue";
 import ConnectButton from "./ConnectButton.vue";
-import { getBalance } from "../chain";
 import { emitter } from "../helpers";
 
 import { resetApp, onConnect } from "../wallet";
@@ -13,10 +12,11 @@ import { ref, onMounted } from "vue";
 const showModal = ref(false);
 const store = useConnectedStore();
 
+const props = defineProps(["supportedChains"]);
+
 onMounted(async () => {
   if (store.isConnected) {
     await onConnect();
-    store.setBalance(await getBalance());
   }
   emitter.on("connectWallet", () => {
     showModal.value = true;
@@ -25,7 +25,7 @@ onMounted(async () => {
 </script>
 <template>
   <div>
-    <ConnectButton class="abs pos" />
+    <ConnectButton class="abs pos" :supportedChains="props.supportedChains" />
     <div v-show="store.isConnected" class="web3-info">
       <button class="disconnect" @click="resetApp">
         <img src="../assets/disconnect.svg" />

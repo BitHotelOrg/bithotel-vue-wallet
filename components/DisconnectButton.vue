@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import ConnectButtonWrapper from "./ConnectButtonWrapper.vue";
-
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import DisconnectButtonWrapperVue from "./DisconnectButtonWrapper.vue";
 const props = defineProps(["supportedChains"]);
 </script>
 <template>
-  <ConnectButtonWrapper :supportedChains="props.supportedChains">
-    <div class="font connect-wallet">
-      <slot> Connect Wallet </slot>
+  <DisconnectButtonWrapperVue :supportedChains="props.supportedChains">
+    <div class="disconnect-wallet font">
+      <slot> Disconnect </slot>
     </div>
-  </ConnectButtonWrapper>
+  </DisconnectButtonWrapperVue>
 </template>
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "./wallet";
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
@@ -21,17 +22,17 @@ const props = defineProps(["supportedChains"]);
   font-family: "Open Sans", sans-serif;
 }
 
-.connect-wallet {
+.disconnect-wallet {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 198px;
-  height: 50px;
+  height: 40px;
   cursor: pointer;
-
+  margin-top: 25px;
   background: var(--color-cta-primary);
   border: 0;
-  border-radius: var(--border-radius);
+  border-radius: 5px;
   z-index: 555;
 }
 </style>
