@@ -34,7 +34,8 @@ export type Chain = {
 export type WalletOptions = {
   theme: "light" | "dark";
   chains: ChainInfo;
-  tokenSymbol: string;
+  infuraKey: string;
+  networkType: "testnet" | "mainnet";
 };
 
 export type ChainInfo = {

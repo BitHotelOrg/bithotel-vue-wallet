@@ -37,7 +37,7 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       plugins: [rollupNodePolyFill()],
-      external: [], // array of dependencies
+      external: ["vue"],
       output: {
         globals: {
           vue: "Vue",
@@ -47,9 +47,18 @@ export default defineConfig({
     lib: {
       entry: fileURLToPath(new URL("index.ts", import.meta.url)),
       name: "bithotel-vue-wallet",
+      fileName: (format) => `bithotel-vue-wallet.${format}.js`,
     },
     commonjsOptions: {
       transformMixedEsModules: true,
     },
   },
 });
+
+// "exports": {
+//   ".": {
+//     "imports": "./dist/bithotel-vue-wallet.es.js",
+//     "require": "./dist/bithotel-vue-wallet.umd.js"
+//   },
+//   "./dist/style.css": "./dist/style.css"
+// },

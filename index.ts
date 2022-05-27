@@ -32,6 +32,8 @@ const walletPlugin = {
     if (version < 3) {
       console.warn("This plugin requires Vue 3");
     }
+    // TODO set default chain / infura key then get the rpc url and network from supportedchains object
+    // TODO also set supportedchains
     // const store = useConnectedStore(); FIXME: dit ipv props
     // store.setSupportedChains(options.chains);
 

@@ -11,7 +11,7 @@ export * from "./contracts";
 export async function getBalance(): Promise<number> {
   await initializing.value;
   try {
-    const store = useConnectedStore();
+    const store: any = (useConnectedStore() as any)();
     const tokenAddress = supportedChains[chainId.value].tokenContract;
     const contract = getTokenContract(tokenAddress);
     const balance = await contract.balanceOf(store.address);

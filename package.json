@@ -2,17 +2,19 @@
   "name": "@bithotel/bithotel-vue-wallet",
   "version": "0.0.2",
   "description": "Configurable multichain web3 wallet. Powered by walletconnect, web3modal  and ethers",
-  "main": "./dist/bithotel-vue-wallet.es.js",
-  "module": "./dist/bithotel-vue-wallet.umd.js",
-  "exports": {
+  "main": "index.ts",
+  "@comment main": "./dist/bithotel-vue-wallet.es.js",
+  "@comment module": "./dist/bithotel-vue-wallet.umd.js",
+  "@comment exports": {
     ".": {
-      "imports": "./dist/bithotel-vue-wallet.es.js",
+      "import": "./dist/bithotel-vue-wallet.es.js",
       "require": "./dist/bithotel-vue-wallet.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:unit": "vitest --environment jsdom"
   },
   "repository": {
     "type": "git",
@@ -63,7 +65,7 @@
     "typechain": "^8.0.0",
     "typescript": "~4.6.3",
     "vite": "^2.9.5",
-    "vitest": "^0.9.3",
+    "vitest": "^0.12.9",
     "vue-tsc": "^0.34.7"
   }
 }

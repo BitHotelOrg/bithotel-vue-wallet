@@ -17,4 +17,16 @@ const providerOptions = {
   },
 };
 
-export { providerOptions };
+function formatProviderOptions({ infuraKey, chainId, rpcUrl, network }) {
+  return {
+    walletconnect: {
+      package: WalletConnectProvider,
+      infuraId: infuraKey,
+      rpc: { [chainId]: rpcUrl },
+      chainId,
+      network,
+    },
+  };
+}
+
+export { formatProviderOptions, providerOptions };
