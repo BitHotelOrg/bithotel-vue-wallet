@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed, inject, onMounted } from "vue";
 import { useConnectedStore } from "../store";
+import { WalletOptions } from "../types";
 import { onConnect, resetApp } from "../wallet";
 
 const store = useConnectedStore();
 const isConnected = computed(() => store.isConnected);
+
+const chainIds = inject<WalletOptions>("WalletOptions").chainIds;
+
 onMounted(async () => {
   if (isConnected.value) {
-    await onConnect();
+    await onConnect(chainIds);
   }
 });
 const props = defineProps(["supportedChains"]);

@@ -33,8 +33,8 @@ export type Chain = {
 
 export type WalletOptions = {
   theme: "light" | "dark";
-  chains: ChainInfo;
   infuraKey: string;
+  chainIds: Array<number>;
   networkType: "testnet" | "mainnet";
 };
 

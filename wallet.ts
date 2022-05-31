@@ -44,7 +44,7 @@ export async function resetApp() {
   web3Modal.clearCachedProvider();
 }
 
-export async function subscribeProvider(provider: JsonRpcProvider) {
+export function subscribeProvider(provider: JsonRpcProvider) {
   if (!provider.on) {
     return;
   }
@@ -63,7 +63,7 @@ export async function subscribeProvider(provider: JsonRpcProvider) {
   });
 }
 
-export async function onConnect() {
+export async function onConnect(chainIds: Array<number>) {
   const store = useConnectedStore();
   // eslint-disable-next-line no-async-promise-executor
   initializing.value = new Promise(async (resolve) => {
@@ -74,10 +74,48 @@ export async function onConnect() {
     provider = reactive(_provider);
     signer = reactive(_signer);
     chainId.value = _network.chainId;
+    if (chainIds.length == 1 && chainIds[0] != chainId.value) {
+      await switchChain(chainIds[0]);
+    }
     store.setAddress(await _signer.getAddress());
     store.setConnected(true);
-    await subscribeProvider(_provider);
+    subscribeProvider(_provider);
     resolve(true);
   });
   store.setBalance(await getBalance());
+}
+
+async function switchChain(chainId: number): Promise<void> {
+  const chainData = getChainData(chainId);
+  if (!chainData) {
+    throw new Error(`Chain ${chainId} not found`);
+  }
+  const hex = chainId.toString(16);
+  await window.ethereum
+    .request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x" + hex }],
+    })
+    .catch(async () => {
+      try {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: "0x" + hex,
+              chainName: chainData.name,
+              rpcUrls: [rpc],
+              blockExplorerUrls: [chainData.explorer],
+              nativeCurrency: {
+                name: chainData.native_currency.name,
+                symbol: chainData.native_currency.symbol,
+                decimals: 18,
+              },
+            },
+          ],
+        });
+      } catch (addError) {
+        console.log(addError);
+      }
+    });
 }
