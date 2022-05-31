@@ -5,16 +5,15 @@ import DisconnectButton from "./components/DisconnectButton.vue";
 import DisconnectButtonWrapper from "./components/DisconnectButtonWrapper.vue";
 import type { App } from "vue";
 import {
-  initializing,
-  signer,
-  provider,
-  onConnect,
+  useSignerOrProvider,
   useSigner,
-  useProvider,
+  onConnect,
 } from "./wallet";
 import type { WalletOptions } from "./types";
 import { getChainData, getBalance, getTokenContract } from "./chain";
 import { useConnectedStore } from "./store";
+import { createPinia } from "pinia";
+import piniaPersist from "pinia-plugin-persist";
 
 const walletPlugin = {
   getChainData,
@@ -22,11 +21,8 @@ const walletPlugin = {
   getBalance,
   onConnect,
   useConnectedStore,
-  initializing,
-  signer,
-  provider,
+  useSignerOrProvider,
   useSigner,
-  useProvider,
   install(app: App, options: WalletOptions): WalletOptions {
     const version = Number(app.version.split(".")[0]);
     if (version < 3) {
@@ -34,8 +30,10 @@ const walletPlugin = {
     }
     // TODO set default chain / infura key then get the rpc url and network from supportedchains object
     // TODO also set supportedchains
-    // const store = useConnectedStore(); FIXME: dit ipv props
-    // store.setSupportedChains(options.chains);
+    const pinia = createPinia();
+    pinia.use(piniaPersist);
+    app.use(pinia);
+
 
     app.component("ConnectWallet", ConnectWallet);
     app.component("ConnectButton", ConnectButton);
