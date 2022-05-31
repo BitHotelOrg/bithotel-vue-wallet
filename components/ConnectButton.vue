@@ -28,10 +28,10 @@ const props = defineProps(["supportedChains"]);
   width: 198px;
   height: 50px;
   cursor: pointer;
-
+  margin-top: 25px;
   background: var(--color-cta-primary);
   border: 0;
-  border-radius: var(--border-radius);
+  border-radius: 5px;
   z-index: 555;
 }
 </style>

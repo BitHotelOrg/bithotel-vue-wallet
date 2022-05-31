@@ -27,7 +27,7 @@ const props = defineProps(["supportedChains"]);
   justify-content: center;
   align-items: center;
   width: 198px;
-  height: 40px;
+  height: 50px;
   cursor: pointer;
   margin-top: 25px;
   background: var(--color-cta-primary);
