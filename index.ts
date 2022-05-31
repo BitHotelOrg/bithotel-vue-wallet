@@ -8,6 +8,7 @@ import {
   useSignerOrProvider,
   useSigner,
   onConnect,
+  useInitializing,
 } from "./wallet";
 import type { WalletOptions } from "./types";
 import { getChainData, getBalance, getTokenContract } from "./chain";
@@ -23,6 +24,7 @@ const walletPlugin = {
   useConnectedStore,
   useSignerOrProvider,
   useSigner,
+  useInitializing,
   install(app: App, options: WalletOptions): WalletOptions {
     const version = Number(app.version.split(".")[0]);
     if (version < 3) {
@@ -33,7 +35,6 @@ const walletPlugin = {
     const pinia = createPinia();
     pinia.use(piniaPersist);
     app.use(pinia);
-
 
     app.component("ConnectWallet", ConnectWallet);
     app.component("ConnectButton", ConnectButton);

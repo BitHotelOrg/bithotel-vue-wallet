@@ -22,7 +22,9 @@ export function useSigner(): ethers.Signer {
   return toRaw(signer);
 }
 
-export function useSignerOrProvider(): ethers.providers.BaseProvider | ethers.Signer {
+export function useSignerOrProvider():
+  | ethers.providers.BaseProvider
+  | ethers.Signer {
   if (Object.keys(toRaw(signer)).length > 0) {
     return toRaw(signer);
   }
@@ -30,6 +32,10 @@ export function useSignerOrProvider(): ethers.providers.BaseProvider | ethers.Si
 }
 
 export const initializing = ref<Promise<boolean>>();
+
+export function useInitializing() {
+  return initializing;
+}
 
 const web3Modal = new Web3Modal({
   theme: "dark",

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import DisconnectButtonWrapperVue from "./DisconnectButtonWrapper.vue";
+import DisconnectButtonWrapper from "./DisconnectButtonWrapper.vue";
 const props = defineProps(["supportedChains"]);
 </script>
 <template>
-  <DisconnectButtonWrapperVue :supportedChains="props.supportedChains">
+  <DisconnectButtonWrapper :supportedChains="props.supportedChains">
     <div class="disconnect-wallet font">
       <slot> Disconnect </slot>
     </div>
-  </DisconnectButtonWrapperVue>
+  </DisconnectButtonWrapper>
 </template>
 <style scoped lang="scss">
 @import "./wallet";
