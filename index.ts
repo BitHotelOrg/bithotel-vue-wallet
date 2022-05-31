@@ -30,13 +30,11 @@ const walletPlugin = {
     }
     // TODO set default chain / infura key then get the rpc url and network from supportedchains object
     // TODO also set supportedchains
-    // const store = useConnectedStore(); FIXME: dit ipv props
-    // store.setSupportedChains(options.chains);
     const pinia = createPinia();
     pinia.use(piniaPersist);
     app.use(pinia);
 
-    
+
     app.component("ConnectWallet", ConnectWallet);
     app.component("ConnectButton", ConnectButton);
     app.component("ConnectButtonWrapper", ConnectButtonWrapper);
