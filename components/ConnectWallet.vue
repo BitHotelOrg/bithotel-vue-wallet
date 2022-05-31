@@ -7,7 +7,7 @@ import { emitter } from "../helpers";
 
 import { resetApp, onConnect } from "../wallet";
 import { useConnectedStore } from "../store";
-import { ref, onMounted, inject, computed } from "vue";
+import { ref, onMounted, inject } from "vue";
 import { WalletOptions } from "../types";
 
 const showModal = ref(false);

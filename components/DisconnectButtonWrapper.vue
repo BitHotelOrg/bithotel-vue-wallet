@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, onMounted } from "vue";
+import { inject, onMounted } from "vue";
 import { useConnectedStore } from "../store";
 import { WalletOptions } from "../types";
 import { onConnect, resetApp } from "../wallet";
