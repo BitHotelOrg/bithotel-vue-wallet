@@ -37,7 +37,8 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       plugins: [rollupNodePolyFill()],
-      external: ["vue"],
+      // https://github.com/vuejs/pinia/discussions/1073
+      external: ["vue", "pinia"],
       output: {
         globals: {
           vue: "Vue",

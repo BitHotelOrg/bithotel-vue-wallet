@@ -1,4 +1,4 @@
-import { reactive, ref } from "vue";
+import { reactive, ref, toRaw } from "vue";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { getChainData } from "./chain/tools";
@@ -13,14 +13,22 @@ export const chainId = ref(defaultChainId);
 const rpc = "https://data-seed-prebsc-2-s3.binance.org:8545/"; // FIXME: global
 
 export let provider = reactive(ethers.getDefaultProvider(rpc));
-export let signer = reactive<ethers.Signer>(null as any);
+export let signer = reactive<ethers.Signer>({} as any);
 
-export function useProvider() {
-  return provider;
+export function useProvider(): ethers.providers.BaseProvider {
+  return toRaw(provider);
 }
-export function useSigner() {
-  return signer;
+export function useSigner(): ethers.Signer {
+  return toRaw(signer);
 }
+
+export function useSignerOrProvider(): ethers.providers.BaseProvider | ethers.Signer {
+  if (Object.keys(toRaw(signer)).length > 0) {
+    return toRaw(signer);
+  }
+  return toRaw(provider);
+}
+
 export const initializing = ref<Promise<boolean>>();
 
 const web3Modal = new Web3Modal({
