@@ -47,6 +47,8 @@ const web3Modal = new Web3Modal({
 export async function resetApp() {
   const store = useConnectedStore();
   store.setConnected(false);
+  store.setAddress("");
+  store.setBalance(0);
   web3Modal.clearCachedProvider();
 }
 

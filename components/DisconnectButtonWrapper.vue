@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, onMounted } from "vue";
+import { inject, onMounted, watchEffect } from "vue";
 import { useConnectedStore } from "../store";
 import { WalletOptions } from "../types";
 import { onConnect, resetApp } from "../wallet";
@@ -7,6 +7,10 @@ import { onConnect, resetApp } from "../wallet";
 const store = useConnectedStore();
 
 const chainIds = inject<WalletOptions>("WalletOptions").chainIds;
+
+watchEffect(() => {
+  console.log(store.isConnected, "Changed");
+});
 
 onMounted(async () => {
   if (store.isConnected) {

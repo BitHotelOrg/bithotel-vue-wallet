@@ -11,7 +11,7 @@ export * from "./contracts";
 export async function getBalance(): Promise<number> {
   await initializing.value;
   try {
-    const store: any = (useConnectedStore() as any)();
+    const store: any = useConnectedStore();
     const contract = getTokenContract(chainId.value);
     const balance = await contract.balanceOf(store.address);
     return +utils.formatEther(balance);

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { chainId, onConnect } from "../wallet";
 import { supportedChains } from "../constants";
-import type { Chain } from "../types";
+import type { Chain, WalletOptions } from "../types";
 import { inject } from "vue";
 
-const network_environment = inject("walletOptions").networkType;
+const network_environment = inject<WalletOptions>("WalletOptions").networkType;
 const chains = Object.values(supportedChains).filter(
   (chain: Chain) => chain.network == network_environment
 );
@@ -47,7 +47,7 @@ async function changeChain(_chainId: number) {
         console.log(addError);
       }
     });
-  await onConnect();
+  await onConnect([chainId.value]);
 }
 </script>
 
