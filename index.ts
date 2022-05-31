@@ -42,7 +42,7 @@ const walletPlugin = {
     app.component("DisconnectButton", DisconnectButton);
     app.component("DisconnectButtonWrapper", DisconnectButtonWrapper);
 
-    app.provide("walletOptions", options);
+    app.provide("WalletOptions", options);
     app.provide("WalletStore", useConnectedStore);
 
     return options;
