@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, inject } from "vue";
+import { inject } from "vue";
 import { useConnectedStore } from "../store";
 import { WalletOptions } from "../types";
 import { onConnect } from "../wallet";
 
 const store = useConnectedStore();
-
-const isConnected = computed(() => store.isConnected);
 
 const props = defineProps(["supportedChains"]);
 
@@ -22,7 +20,7 @@ async function handleOnConnect() {
 }
 </script>
 <template>
-  <div v-show="!isConnected" @click="handleOnConnect">
+  <div v-show="!store.isConnected" @click="handleOnConnect">
     <slot> Connect Wallet </slot>
   </div>
 </template>

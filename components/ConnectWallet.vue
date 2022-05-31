@@ -13,13 +13,11 @@ import { WalletOptions } from "../types";
 const showModal = ref(false);
 const store = useConnectedStore();
 
-const isConnected = computed(() => store.isConnected);
-
 const props = defineProps(["supportedChains"]);
 const chainIds = inject<WalletOptions>("WalletOptions").chainIds;
 
 onMounted(async () => {
-  if (isConnected.value) {
+  if (store.isConnected) {
     await onConnect(chainIds);
   }
   emitter.on("connectWallet", () => {
@@ -30,7 +28,7 @@ onMounted(async () => {
 <template>
   <div>
     <ConnectButton class="abs pos" :supportedChains="props.supportedChains" />
-    <div v-show="isConnected" class="web3-info">
+    <div v-show="store.isConnected" class="web3-info">
       <button class="disconnect" @click="resetApp">
         <img src="../assets/disconnect.svg" />
       </button>

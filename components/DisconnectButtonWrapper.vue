@@ -5,12 +5,11 @@ import { WalletOptions } from "../types";
 import { onConnect, resetApp } from "../wallet";
 
 const store = useConnectedStore();
-const isConnected = computed(() => store.isConnected);
 
 const chainIds = inject<WalletOptions>("WalletOptions").chainIds;
 
 onMounted(async () => {
-  if (isConnected.value) {
+  if (store.isConnected) {
     await onConnect(chainIds);
   }
 });
