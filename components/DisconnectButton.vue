@@ -32,6 +32,6 @@ const props = defineProps(["supportedChains"]);
   background: var(--color-cta-primary);
   border: 0;
   border-radius: 5px;
-  z-index: 555;
+  z-index: 2;
 }
 </style>

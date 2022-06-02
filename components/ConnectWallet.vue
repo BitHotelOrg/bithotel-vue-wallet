@@ -134,7 +134,7 @@ onMounted(async () => {
   font-size: 16px;
   font-weight: 400;
   cursor: poiner;
-  z-index: 555;
+  z-index: 2;
   animation: scale10Back 400ms ease forwards;
   &:hover {
     animation: scale10 400ms ease forwards;
