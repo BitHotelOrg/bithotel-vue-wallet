@@ -88,7 +88,6 @@ export async function onConnect(chainIds: Array<number>) {
     store.setAddress(await _signer.getAddress());
     store.setConnected(true);
     subscribeProvider(_provider);
-    console.log("done init here")
     resolve(true);
   });
   store.setBalance(await getBalance());
