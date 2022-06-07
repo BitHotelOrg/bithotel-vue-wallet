@@ -33,8 +33,8 @@ export function useSignerOrProvider():
 
 export const initializing = ref<Promise<boolean>>();
 
-export function useInitializing() {
-  return initializing;
+export function useInitializing(): Promise<boolean> {
+  return initializing.value;
 }
 
 const web3Modal = new Web3Modal({
@@ -88,6 +88,7 @@ export async function onConnect(chainIds: Array<number>) {
     store.setAddress(await _signer.getAddress());
     store.setConnected(true);
     subscribeProvider(_provider);
+    console.log("done init here")
     resolve(true);
   });
   store.setBalance(await getBalance());
