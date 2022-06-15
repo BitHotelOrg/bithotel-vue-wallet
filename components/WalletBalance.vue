@@ -27,7 +27,7 @@ function numberWithDots(x: number) {
 
 .balance {
   z-index: 55;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   cursor: pointer;
   float: left;
   margin-top: 20px;

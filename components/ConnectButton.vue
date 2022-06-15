@@ -15,7 +15,7 @@ const props = defineProps(["supportedChains"]);
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
 .font {
-  color: var(--color-text);
+  color: var(--color-text-primary);
   font-size: 14px;
   font-weight: 700;
   font-family: "Open Sans", sans-serif;

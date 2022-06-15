@@ -34,7 +34,7 @@ watch(
 
 .wallet-address {
   z-index: 55;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   cursor: pointer;
   float: left;
   margin-right: 15px;

@@ -79,7 +79,7 @@ onMounted(async () => {
     width: 40px;
     height: 40px;
     border-radius: 5px;
-    color: var(--color-text);
+    color: var(--color-text-primary);
     border: 1px solid var(--vertical-lines);
     background: var(--color-exit-background);
     float: right;
@@ -130,7 +130,7 @@ onMounted(async () => {
   z-index: 5;
   text-align: center;
   border: 0;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   font-size: 16px;
   font-weight: 400;
   cursor: poiner;
