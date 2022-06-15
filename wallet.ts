@@ -33,8 +33,8 @@ export function useSignerOrProvider():
 
 export const initializing = ref<Promise<boolean>>();
 
-export function useInitializing() {
-  return initializing;
+export function useInitializing(): Promise<boolean> {
+  return initializing.value;
 }
 
 const web3Modal = new Web3Modal({
