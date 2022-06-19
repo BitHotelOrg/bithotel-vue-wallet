@@ -17,6 +17,22 @@ export const supportedChains: {
     };
   };
 } = {
+  4: {
+    name: "Rinkeby",
+    tokenContract: "",
+    rpc: "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+    explorer: "https://rinkeby.etherscan.io/",
+    network: "testnet",
+    native_currency: {
+      symbol: "RIN",
+      name: "RIN",
+      hex: "0x4",
+      decimals: "18",
+      contractAddress: "",
+    },
+    chain_id: 4,
+    network_id: 4,
+  },
   56: {
     name: "Binance Smart Chain",
     tokenContract: "0x57Bc18F6177cDafFb34aCE048745bc913a1B1b54",
@@ -36,7 +52,7 @@ export const supportedChains: {
   97: {
     name: "Binance Smart Chain Testnet",
     tokenContract: "0x3c268E859abE250016646BE0de15e7aa88ED7666",
-    rpc: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+    rpc: "https://data-seed-prebsc-1-s3.binance.org:8545",
     explorer: "https://testnet.bscscan.com/",
     network: "testnet",
     native_currency: {

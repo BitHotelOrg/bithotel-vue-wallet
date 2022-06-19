@@ -28,7 +28,7 @@ onMounted(async () => {
 <template>
   <div>
     <ConnectButton class="abs pos" :supportedChains="props.supportedChains" />
-    <div v-show="store.isConnected" class="web3-info">
+    <div class="web3-info">
       <button class="disconnect" @click="resetApp">
         <img src="../assets/disconnect.svg" />
       </button>
