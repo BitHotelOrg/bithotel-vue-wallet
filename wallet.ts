@@ -10,7 +10,7 @@ import { getBalance } from "./chain";
 const defaultChainId = 97; // FIXME:
 
 export const chainId = ref(defaultChainId);
-const rpc = "https://data-seed-prebsc-2-s3.binance.org:8545/"; // FIXME: global
+const rpc = "https://data-seed-prebsc-1-s3.binance.org:8545"; // FIXME: global
 
 export let provider = reactive(ethers.getDefaultProvider(rpc));
 export let signer = reactive<ethers.Signer>({} as any);
