@@ -6,6 +6,7 @@ import type { Erc20Abi } from "../types";
 import { Erc20Abi__factory } from "../types";
 
 export function getTokenContract(chainId: number): Erc20Abi {
+  // console.trace(supportedChains[chainId], chainId);
   return Erc20Abi__factory.connect(
     supportedChains[chainId].tokenContract,
     toRaw(signer)

@@ -4,16 +4,21 @@ import Web3Modal from "web3modal";
 import { getChainData } from "./chain/tools";
 import { providerOptions } from "./chain/walletConnectConfig";
 import { useConnectedStore } from "./store";
-import type { JsonRpcProvider } from "@ethersproject/providers";
+import type {
+  JsonRpcProvider,
+  JsonRpcSigner,
+  Web3Provider,
+} from "@ethersproject/providers";
 import { getBalance } from "./chain";
 
 const defaultChainId = 97; // FIXME:
 
 export const chainId = ref(defaultChainId);
 const rpc = "https://data-seed-prebsc-1-s3.binance.org:8545"; // FIXME: global
-
-export let provider = reactive(ethers.getDefaultProvider(rpc));
-export let signer = reactive<ethers.Signer>({} as any);
+// export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
+//@ts-ignore
+export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
+export let signer: JsonRpcSigner = reactive(provider.getSigner());
 
 export function useProvider(): ethers.providers.BaseProvider {
   return toRaw(provider);
@@ -34,7 +39,7 @@ export function useSignerOrProvider():
 export const initializing = ref<Promise<boolean>>();
 
 export function useInitializing(): Promise<boolean> {
-  return initializing.value;
+  return initializing.value as Promise<boolean>;
 }
 
 const web3Modal = new Web3Modal({
@@ -93,37 +98,38 @@ export async function onConnect(chainIds: Array<number>) {
   store.setBalance(await getBalance());
 }
 
-async function switchChain(chainId: number): Promise<void> {
-  const chainData = getChainData(chainId);
+async function switchChain(_chainId: number): Promise<void> {
+  const chainData = getChainData(_chainId);
   if (!chainData) {
-    throw new Error(`Chain ${chainId} not found`);
+    throw new Error(`Chain ${_chainId} not found`);
   }
-  const hex = chainId.toString(16);
-  await window.ethereum
-    .request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: "0x" + hex }],
-    })
-    .catch(async () => {
-      try {
-        await window.ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [
-            {
-              chainId: "0x" + hex,
-              chainName: chainData.name,
-              rpcUrls: [rpc],
-              blockExplorerUrls: [chainData.explorer],
-              nativeCurrency: {
-                name: chainData.native_currency.name,
-                symbol: chainData.native_currency.symbol,
-                decimals: 18,
-              },
-            },
-          ],
-        });
-      } catch (addError) {
-        console.log(addError);
-      }
+  try {
+    await window.ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [
+        {
+          chainId: chainData.native_currency.hex,
+          chainName: chainData.name,
+          rpcUrls: [chainData.rpc],
+          blockExplorerUrls: [chainData.explorer],
+          nativeCurrency: {
+            name: chainData.native_currency.name,
+            symbol: chainData.native_currency.symbol,
+            decimals: 18,
+          },
+        },
+      ],
     });
+    chainId.value = _chainId;
+  } catch (e) {
+    console.error(e);
+  }
+  try {
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: chainData.native_currency.hex }],
+    });
+  } catch (e) {
+    console.error(e);
+  }
 }

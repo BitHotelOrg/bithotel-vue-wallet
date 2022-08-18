@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { inject, onMounted } from "vue";
-import { useConnectedStore } from "../store";
-import { WalletOptions } from "../types";
-import { onConnect, resetApp } from "../wallet";
+  import { inject, onMounted } from "vue";
+  import { useConnectedStore } from "../store";
+  import type { WalletOptions } from "../types";
+  import { onConnect, resetApp } from "../wallet";
 
-const store = useConnectedStore();
+  const store = useConnectedStore();
 
-const chainIds = inject<WalletOptions>("WalletOptions").chainIds;
+  const chainIds = inject<WalletOptions>("WalletOptions")?.chainIds;
 
-onMounted(async () => {
-  if (store.isConnected) {
-    await onConnect(chainIds);
-  }
-});
-const props = defineProps(["supportedChains"]);
+  onMounted(async () => {
+    if (store.isConnected && chainIds) {
+      await onConnect(chainIds);
+    }
+  });
+  const props = defineProps(["supportedChains"]);
 
-store.setSupportedChains(props.supportedChains);
+  store.setSupportedChains(props.supportedChains);
 </script>
 <template>
   <div @click="resetApp" v-show="store.isConnected">

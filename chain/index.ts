@@ -16,7 +16,7 @@ export async function getBalance(): Promise<number> {
     const balance = await contract.balanceOf(store.address);
     return +utils.formatEther(balance);
   } catch (e) {
-    console.log(e);
+    location.reload();
     return 0;
   }
 }
