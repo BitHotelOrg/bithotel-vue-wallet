@@ -12,3 +12,10 @@ export function getTokenContract(chainId: number): Erc20Abi {
     toRaw(signer)
   );
 }
+
+export function getBusdContract(chainId: number): Erc20Abi {
+  return Erc20Abi__factory.connect(
+    supportedChains[chainId].busdContract,
+    toRaw(signer)
+  );
+}
