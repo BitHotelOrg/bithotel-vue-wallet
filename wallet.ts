@@ -11,11 +11,10 @@ import type {
 } from "@ethersproject/providers";
 import { getBalance } from "./chain";
 
-const defaultChainId = 97; // FIXME:
+const defaultChainId = import.meta.env.VITE_APP_CHAINID;
 
 export const chainId = ref(defaultChainId);
-const rpc = "https://data-seed-prebsc-1-s3.binance.org:8545"; // FIXME: global
-// export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
+const rpc = import.meta.env.VITE_APP_RPC_URL;
 //@ts-ignore
 export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
 export let signer: JsonRpcSigner = reactive(provider.getSigner());
