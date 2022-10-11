@@ -1,4 +1,4 @@
-import { signer } from "../wallet";
+import { signer, useSignerOrProvider } from "../wallet";
 import { toRaw } from "vue";
 import { supportedChains } from "../constants";
 
@@ -11,6 +11,12 @@ export function getTokenContract(chainId: number): Erc20Abi {
     supportedChains[chainId].tokenContract,
     toRaw(signer)
   );
+}
+
+export function getTokenByAddress(address: string): Erc20Abi {
+  return Erc20Abi__factory.connect(
+    address, useSignerOrProvider(),
+  )
 }
 
 export function getBusdContract(chainId: number): Erc20Abi {
