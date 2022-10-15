@@ -60,8 +60,8 @@ export const supportedChains: {
     explorer: "https://testnet.bscscan.com/",
     network: "testnet",
     native_currency: {
-      symbol: "BNB",
-      name: "BNB",
+      symbol: "TBNB",
+      name: "TBNB",
       hex: "0x61",
       decimals: "18",
       contractAddress: "",

@@ -32,7 +32,7 @@
   "homepage": "https://github.com/BitHotelOrg/bithotel-vue-wallet#readme",
   "dependencies": {
     "@kyvg/vue3-notification": "^2.3.4",
-    "ethers": "^5.6.6",
+    "ethers": "^5.7.1",
     "mitt": "^3.0.0",
     "pinia": "^2.0.13",
     "pinia-plugin-persist": "^1.0.0",
