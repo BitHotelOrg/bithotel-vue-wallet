@@ -11,9 +11,9 @@ import type {
 } from "@ethersproject/providers";
 import { getBalance } from "./chain";
 
-const defaultChainId = import.meta.env.VITE_APP_CHAINID;
+const defaultChainId = +import.meta.env.VITE_APP_CHAINID;
 
-export const chainId = ref(defaultChainId);
+export const chainId = ref<number>(defaultChainId);
 const rpc = import.meta.env.VITE_APP_RPC_URL;
 //@ts-ignore
 export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
@@ -29,7 +29,7 @@ export function useSigner(): ethers.Signer {
 export function useSignerOrProvider():
   | ethers.providers.BaseProvider
   | ethers.Signer {
-  if (Object.keys(toRaw(signer)).length > 0) {
+  if (signer._address) {
     return toRaw(signer);
   }
   return toRaw(provider);
@@ -79,9 +79,13 @@ export async function onConnect(chainIds: Array<number>) {
   const store = useConnectedStore();
   // eslint-disable-next-line no-async-promise-executor
   initializing.value = new Promise(async (resolve) => {
+    console.log(0);
     const modalProvider = await web3Modal.connect();
+    console.log(1);
     const _provider = new ethers.providers.Web3Provider(modalProvider);
+    console.log(2);
     const _signer = _provider.getSigner();
+    console.log(3);
     const _network = await _provider.getNetwork();
     provider = reactive(_provider);
     signer = reactive(_signer);

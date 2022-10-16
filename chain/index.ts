@@ -1,5 +1,4 @@
 import { initializing, chainId } from "../wallet";
-import { supportedChains } from "../constants";
 import { utils } from "ethers";
 import { getTokenContract } from "./contracts";
 import { useConnectedStore } from "../store";

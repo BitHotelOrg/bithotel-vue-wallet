@@ -1,29 +1,29 @@
 <script setup lang="ts">
-  import WalletAddress from "./WalletAddress.vue";
-  import WalletBalance from "./WalletBalance.vue";
-  import ChainIcon from "./ChainIcon.vue";
-  import ConnectButton from "./ConnectButton.vue";
-  import { emitter } from "../helpers";
+import WalletAddress from "./WalletAddress.vue";
+import WalletBalance from "./WalletBalance.vue";
+import ChainIcon from "./ChainIcon.vue";
+import ConnectButton from "./ConnectButton.vue";
+import { emitter } from "../helpers";
 
-  import { resetApp, onConnect } from "../wallet";
-  import { useConnectedStore } from "../store";
-  import { ref, onMounted, inject } from "vue";
-  import type { WalletOptions } from "../types";
+import { resetApp, onConnect } from "../wallet";
+import { useConnectedStore } from "../store";
+import { ref, onMounted, inject } from "vue";
+import type { WalletOptions } from "../types";
 
-  const showModal = ref(false);
-  const store = useConnectedStore();
+const showModal = ref(false);
+const store = useConnectedStore();
 
-  const props = defineProps(["supportedChains"]);
-  const chainIds = inject<WalletOptions>("WalletOptions")?.chainIds;
+const props = defineProps(["supportedChains"]);
+const chainIds = inject<WalletOptions>("WalletOptions")?.chainIds;
 
-  onMounted(async () => {
-    if (store.isConnected && chainIds) {
-      await onConnect(chainIds);
-    }
-    emitter.on("connectWallet", () => {
-      showModal.value = true;
-    });
+onMounted(async () => {
+  if (store.isConnected && chainIds) {
+    await onConnect(chainIds);
+  }
+  emitter.on("connectWallet", () => {
+    showModal.value = true;
   });
+});
 </script>
 <template>
   <div>

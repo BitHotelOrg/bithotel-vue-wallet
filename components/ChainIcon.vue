@@ -1,55 +1,54 @@
 <script setup lang="ts">
-  import { chainId, onConnect } from "../wallet";
-  import { supportedChains } from "../constants";
-  import type { Chain, WalletOptions } from "../types";
-  import { inject } from "vue";
+import { chainId, onConnect } from "../wallet";
+import { supportedChains } from "../constants";
+import type { Chain, WalletOptions } from "../types";
+import { inject } from "vue";
 
-  const network_environment =
-    inject<WalletOptions>("WalletOptions")?.networkType;
-  const chains = Object.values(supportedChains).filter(
-    (chain: Chain) => chain.network == network_environment
-  );
-  const multichain = chains.length > 1;
+const network_environment = inject<WalletOptions>("WalletOptions")?.networkType;
+const chains = Object.values(supportedChains).filter(
+  (chain: Chain) => chain.network == network_environment
+);
+const multichain = chains.length > 1;
 
-  const imgUrl = (symbol) =>
-    new URL(`../assets/chains/${symbol}.png`, import.meta.url).href;
+const imgUrl = (symbol) =>
+  new URL(`../assets/chains/${symbol}.png`, import.meta.url).href;
 
-  async function changeChain(_chainId: number) {
-    const hex = _chainId.toString(16);
-    const name = supportedChains[_chainId].name;
-    const rpc = supportedChains[_chainId].rpc;
-    const blockExplorer = supportedChains[_chainId].explorer;
-    const curreny = supportedChains[_chainId].native_currency.symbol;
+async function changeChain(_chainId: number) {
+  const hex = _chainId.toString(16);
+  const name = supportedChains[_chainId].name;
+  const rpc = supportedChains[_chainId].rpc;
+  const blockExplorer = supportedChains[_chainId].explorer;
+  const curreny = supportedChains[_chainId].native_currency.symbol;
 
-    await window.ethereum
-      .request({
-        method: "wallet_switchEthereumChain",
-        params: [{ chainId: "0x" + hex }],
-      })
-      .catch(async () => {
-        try {
-          await window.ethereum.request({
-            method: "wallet_addEthereumChain",
-            params: [
-              {
-                chainId: "0x" + hex,
-                chainName: name,
-                rpcUrls: [rpc],
-                blockExplorerUrls: [blockExplorer],
-                nativeCurrency: {
-                  name: curreny,
-                  symbol: curreny,
-                  decimals: 18,
-                },
+  await window.ethereum
+    .request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x" + hex }],
+    })
+    .catch(async () => {
+      try {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: "0x" + hex,
+              chainName: name,
+              rpcUrls: [rpc],
+              blockExplorerUrls: [blockExplorer],
+              nativeCurrency: {
+                name: curreny,
+                symbol: curreny,
+                decimals: 18,
               },
-            ],
-          });
-        } catch (addError) {
-          console.log(addError);
-        }
-      });
-    await onConnect([chainId.value]);
-  }
+            },
+          ],
+        });
+      } catch (addError) {
+        console.log(addError);
+      }
+    });
+  await onConnect([chainId.value]);
+}
 </script>
 
 <template>
