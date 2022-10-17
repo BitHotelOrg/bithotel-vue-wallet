@@ -24,7 +24,7 @@ async function handleOnConnect() {
 }
 </script>
 <template>
-  <div v-show="!store.isConnected" @click="handleOnConnect">
+  <div v-show="!store.connected" @click="handleOnConnect">
     <slot> Connect Wallet </slot>
   </div>
 </template>
