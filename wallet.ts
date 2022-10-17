@@ -79,13 +79,9 @@ export async function onConnect(chainIds: Array<number>) {
   const store = useConnectedStore();
   // eslint-disable-next-line no-async-promise-executor
   initializing.value = new Promise(async (resolve) => {
-    console.log(0);
     const modalProvider = await web3Modal.connect();
-    console.log(1);
     const _provider = new ethers.providers.Web3Provider(modalProvider);
-    console.log(2);
     const _signer = _provider.getSigner();
-    console.log(3);
     const _network = await _provider.getNetwork();
     provider = reactive(_provider);
     signer = reactive(_signer);
