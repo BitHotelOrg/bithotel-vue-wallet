@@ -1,12 +1,11 @@
 import { reactive, ref, toRaw } from "vue";
-import { ethers } from "ethers";
+import { ethers, Signer } from "ethers";
 import Web3Modal from "web3modal";
 import { getChainData } from "./chain/tools";
 import { providerOptions } from "./chain/walletConnectConfig";
 import { useConnectedStore } from "./store";
 import type {
   JsonRpcProvider,
-  JsonRpcSigner,
   Web3Provider,
 } from "@ethersproject/providers";
 import { getBalance } from "./chain";
@@ -15,9 +14,9 @@ const defaultChainId = +import.meta.env.VITE_APP_CHAINID;
 
 export const chainId = ref<number>(defaultChainId);
 const rpc = import.meta.env.VITE_APP_RPC_URL;
-//@ts-ignore
+// @ts-ignore
 export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
-export let signer: JsonRpcSigner = reactive(provider.getSigner());
+export let signer: Signer = reactive({} as Signer);
 
 export function useProvider(): ethers.providers.BaseProvider {
   return toRaw(provider);
