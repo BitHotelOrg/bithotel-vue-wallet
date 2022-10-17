@@ -29,7 +29,7 @@ export function useSigner(): ethers.Signer {
 export function useSignerOrProvider():
   | ethers.providers.BaseProvider
   | ethers.Signer {
-  if (signer._address) {
+  if (signer._isSigner) {
     return toRaw(signer);
   }
   return toRaw(provider);
