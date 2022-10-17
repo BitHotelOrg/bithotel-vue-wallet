@@ -17,7 +17,7 @@ const props = defineProps(["supportedChains"]);
 const chainIds = inject<WalletOptions>("WalletOptions")?.chainIds;
 
 onMounted(async () => {
-  if (store.isConnected && chainIds) {
+  if (store.connected && chainIds) {
     await onConnect(chainIds);
   }
   emitter.on("connectWallet", () => {

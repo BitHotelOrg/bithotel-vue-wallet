@@ -9,7 +9,7 @@ watch(
   () => store.address,
   async (address, prevAddress) => {
     console.log({ address, prevAddress });
-    if (store.isConnected) {
+    if (store.connected) {
       store.setBalance(await getBalance());
     }
   }
