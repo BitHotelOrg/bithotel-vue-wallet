@@ -19,7 +19,7 @@ async function handleOnConnect() {
       console.log("Error on handleOnConnect:", e);
     }
   } else {
-    await onConnect([+import.meta.env.VITE_APP_CHAINID]);
+    await onConnect([+import.meta.env.VITE_CHAINID]);
   }
 }
 </script>

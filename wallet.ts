@@ -10,10 +10,10 @@ import type {
 } from "@ethersproject/providers";
 import { getBalance } from "./chain";
 
-const defaultChainId = +import.meta.env.VITE_APP_CHAINID;
+const defaultChainId = +import.meta.env.VITE_CHAINID;
 
 export const chainId = ref<number>(defaultChainId);
-const rpc = import.meta.env.VITE_APP_RPC_URL;
+const rpc = import.meta.env.VITE_RPC_URL;
 // @ts-ignore
 export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
 export let signer: Signer = reactive({} as Signer);
