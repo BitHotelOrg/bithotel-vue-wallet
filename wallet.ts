@@ -4,10 +4,7 @@ import Web3Modal from "web3modal";
 import { getChainData } from "./chain/tools";
 import { providerOptions } from "./chain/walletConnectConfig";
 import { useConnectedStore } from "./store";
-import type {
-  JsonRpcProvider,
-  Web3Provider,
-} from "@ethersproject/providers";
+import type { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 import { getBalance } from "./chain";
 
 const defaultChainId = +import.meta.env.VITE_CHAINID;
