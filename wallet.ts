@@ -4,7 +4,7 @@ import Web3Modal from "web3modal";
 import { getChainData } from "./chain/tools";
 import { providerOptions } from "./chain/walletConnectConfig";
 import { useConnectedStore } from "./store";
-import type { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
+import type { JsonRpcProvider, Provider } from "@ethersproject/providers";
 import { getBalance } from "./chain";
 
 const defaultChainId = +import.meta.env.VITE_CHAINID;
@@ -12,19 +12,19 @@ const defaultChainId = +import.meta.env.VITE_CHAINID;
 export const chainId = ref<number>(defaultChainId);
 const rpc = import.meta.env.VITE_RPC_URL;
 // @ts-ignore
-export let provider: Web3Provider = reactive(ethers.getDefaultProvider(rpc));
+export let provider: Provider = reactive(ethers.getDefaultProvider(rpc));
 export let signer: Signer = reactive({} as Signer);
 
-export function useProvider(): ethers.providers.BaseProvider {
+export function useProvider(): Provider {
   return toRaw(provider);
 }
-export function useSigner(): ethers.Signer {
+export function useSigner(): Signer {
   return toRaw(signer);
 }
 
 export function useSignerOrProvider():
-  | ethers.providers.BaseProvider
-  | ethers.Signer {
+  | Provider
+  | Signer {
   if (signer._isSigner) {
     return toRaw(signer);
   }
@@ -79,7 +79,7 @@ export async function onConnect(chainIds: Array<number>) {
     const _provider = new ethers.providers.Web3Provider(modalProvider);
     const _signer = _provider.getSigner();
     const _network = await _provider.getNetwork();
-    provider = reactive(_provider);
+    provider = reactive(_provider as unknown as Provider);
     signer = reactive(_signer);
     chainId.value = _network.chainId;
     if (chainIds.length == 1 && chainIds[0] != chainId.value) {
@@ -87,7 +87,7 @@ export async function onConnect(chainIds: Array<number>) {
     }
     store.setAddress(await _signer.getAddress());
     store.setConnected(true);
-    subscribeProvider(_provider);
+    subscribeProvider(_provider as unknown as JsonRpcProvider);
     resolve(true);
   });
   store.setBalance(await getBalance());

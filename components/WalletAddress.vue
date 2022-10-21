@@ -3,10 +3,13 @@ import { shortenAddress, fallbackCopyTextToClipboard } from "../helpers";
 import { useConnectedStore } from "../store";
 import { getBalance } from "../chain";
 import { watch } from "vue";
+import { storeToRefs } from "pinia";
+
 const store = useConnectedStore();
+const { address } = storeToRefs(store);
 
 watch(
-  () => store.address,
+  () => address,
   async (address, prevAddress) => {
     console.log({ address, prevAddress });
     if (store.connected) {
