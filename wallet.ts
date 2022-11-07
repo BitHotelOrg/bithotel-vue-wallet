@@ -14,6 +14,7 @@ const rpc = import.meta.env.VITE_RPC_URL;
 // @ts-ignore
 export let provider: Provider = reactive(ethers.getDefaultProvider(rpc));
 export let signer: Signer = reactive({} as Signer);
+export const walletAddress = ref<string>("");
 
 export function useProvider(): Provider {
   return toRaw(provider);
@@ -85,6 +86,7 @@ export async function onConnect(chainIds: Array<number>) {
     if (chainIds.length == 1 && chainIds[0] != chainId.value) {
       await switchChain(chainIds[0]);
     }
+    walletAddress.value = await _signer.getAddress();
     store.setAddress(await _signer.getAddress());
     store.setConnected(true);
     subscribeProvider(_provider as unknown as JsonRpcProvider);
