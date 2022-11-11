@@ -13,7 +13,7 @@ function numberWithDots(x: number) {
 <template>
   <div class="balance">
     <img src="../assets/tokenIcon.png" style="top: 0" height="24" alt="Contact" />
-    <span> {{ numberWithDots(store.balance) }} KICKS</span>
+    <span> {{ Math.floor(store.balance) }} KICKS</span>
   </div>
 </template>
 
