@@ -37,7 +37,7 @@ export const supportedChains: {
   },
   56: {
     name: "Binance Smart Chain",
-    tokenContract: "0x57Bc18F6177cDafFb34aCE048745bc913a1B1b54",
+    tokenContract: "0xfEB4e9B932eF708c498Cc997ABe51D0EE39300cf",
     busdContract: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
     rpc: "https://bsc-dataseed.binance.org/",
     explorer: "https://bscscan.com/",
@@ -54,7 +54,7 @@ export const supportedChains: {
   },
   97: {
     name: "Binance Smart Chain Testnet",
-    tokenContract: "0x3c268E859abE250016646BE0de15e7aa88ED7666",
+    tokenContract: "0x80417aD9ba3784FC9a3419A8056afc1eeDC02698",
     busdContract: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
     rpc: "https://data-seed-prebsc-1-s3.binance.org:8545",
     explorer: "https://testnet.bscscan.com/",
