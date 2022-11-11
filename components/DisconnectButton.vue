@@ -3,11 +3,14 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import DisconnectButtonWrapper from "./DisconnectButtonWrapper.vue";
 const props = defineProps(["supportedChains"]);
+import WalletAddress from "./WalletAddress.vue";
 </script>
 <template>
   <DisconnectButtonWrapper :supportedChains="props.supportedChains">
     <div class="disconnect-wallet font">
-      <slot> Disconnect </slot>
+      <WalletAddress style="margin-top:4px;" />
+      <img src="../assets/disconnect.svg" />
+      <!-- <slot> Disconnect </slot> -->
     </div>
   </DisconnectButtonWrapper>
 </template>

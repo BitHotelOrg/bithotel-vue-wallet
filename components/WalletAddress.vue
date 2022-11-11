@@ -19,15 +19,12 @@ watch(
 );
 </script>
 <template>
-  <div
-    class="wallet-address"
-    @click="fallbackCopyTextToClipboard(store.address)"
-  >
-    <img
+  <div class="wallet-address" @click="fallbackCopyTextToClipboard(store.address)">
+    <!-- <img
       src="../assets/wallet-icon.svg"
       style="top: 0; margin-right: 5px"
       alt="Contact"
-    />
+    /> -->
     <span>{{ shortenAddress(store.address) }}</span>
   </div>
 </template>
@@ -51,6 +48,7 @@ watch(
     white-space: nowrap;
     line-height: 24px;
   }
+
   span::hover {
     white-space: normal;
   }

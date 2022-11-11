@@ -21,7 +21,7 @@ export async function getBalance(tokenAddress?: string): Promise<number> {
     const balance = await contract.balanceOf(store.address);
     return +utils.formatEther(balance);
   } catch (e) {
-    location.reload();
+    // location.reload();
     return 0;
   }
 }
